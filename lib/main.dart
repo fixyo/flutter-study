@@ -5,64 +5,55 @@ void main() {
   runApp(MaterialApp(
     home: Scaffold(
       appBar: AppBar(title: const Text('hello flutter'), centerTitle: true),
-      body: const MyGrid()
+      body: const MyHome()
     ),
   ));
 }
 
-class MyGrid extends StatelessWidget {
-  const MyGrid({super.key});
-
-  Widget getContainerWidget(context, i) {
-    
-    return Container(
-      alignment: Alignment.center,
-      decoration: const BoxDecoration(
-        color: Colors.blue,
-      ),
-      // padding: const EdgeInsets.all(10),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children:[
-          Image.asset('images/img0${i + 1}.png', fit: BoxFit.cover,),
-          const SizedBox(height: 10),
-          Text('${i+1}', style: const TextStyle(fontSize: 24, color: Colors.white),)
-        ],
-      )
-    );
-   
-  }
+class MyHome extends StatelessWidget {
+  const MyHome({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // return GridView.count(
-    //   // 主轴的数量（一行）
-    //   crossAxisCount: 4,
-    //   // 元素间的水平间距 
-    //   crossAxisSpacing: 10,
-    //   // 元素间的垂直间距  
-    //   mainAxisSpacing: 10,
-    //   childAspectRatio: 0.5,
-    //   padding: const EdgeInsets.all(10),
-    //   children: getContainerWidget(),
+    // Padding Widget功能单一，只能实现padding的功能，但是占用内存小
+    // return const Padding(
+    //   padding: EdgeInsets.all(40),
+    //   child: Text('hello flutter')
     // );
-    return GridView.builder(
-      padding: const EdgeInsets.all(10),
-      // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-      //   crossAxisCount: 3,
-      //   mainAxisSpacing: 10,
-      //   crossAxisSpacing: 10,
-      // ),
-      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 180,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
-        // 宽高比
-        childAspectRatio: 1
+
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      color: Colors.black38,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          IconContainer(icon: Icons.access_alarm, color: Colors.orange,),
+          IconContainer(icon: Icons.abc_rounded, color: Colors.orange,),
+          IconContainer(icon: Icons.access_time, color: Colors.orange,)
+        ],
       ),
-      itemBuilder: getContainerWidget,
-      // 不传itemcount则不知道循环次数
-      itemCount: 7,
     );
   }
 }
+
+// ignore: must_be_immutable
+class IconContainer extends StatelessWidget {
+  Color color;
+  IconData icon;
+
+  IconContainer({super.key, required this.color, required this.icon});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 120,
+      height: 120,
+      alignment: Alignment.center,
+      color: color,
+      child: Icon(icon, color: Colors.white, size: 40,),
+    );
+  }
+}
+
