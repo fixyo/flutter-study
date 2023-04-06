@@ -18,52 +18,70 @@ class MyHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return Container(
-    //   width: 200,
-    //   height: 200,
-    //   color: Colors.red,
-    //   child: const Align(
-    //     alignment: Alignment.topLeft,
-    //     child: Text('hi flutter'),
+    // return AspectRatio(
+    //   aspectRatio: 2/1,
+    //   child: Container(
+    //     color: Colors.red,
     //   ),
     // );
-    // space-between
-    // return Row(
-    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //   children: const [
-    //     Text('left'),
-    //     Text('right')
-    //   ],
-    // );
 
-    // space-between
-    // return Stack(
-    //   children: const [
-    //     Align(alignment: Alignment.topLeft, child: Text('left')),
-    //     Align(alignment: Alignment.topRight, child: Text('right'))
-    //   ],
-    // );
-
-    // space-between
-    return Column( 
+    return ListView(
       children: [
-        Container(
-          width: double.infinity,
-          height: 40,
-          child: Stack(
-            children: const [
-              Positioned(
-                left: 0,
-                child: Text('left'),
+        Card(
+          margin: const EdgeInsets.all(20),
+          elevation: 40, // 阴影
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20)
+          ),
+          child: Column(
+            children: [
+              AspectRatio(
+                  aspectRatio: 16/9,
+                  child: Image.asset('images/img01.png', fit: BoxFit.fill,),
               ),
-              Positioned(
-                right: 0,
-                child: Text('right'),
+              ListTile(
+                leading: ClipOval(
+                  child: Image.asset('images/img02.png',
+                    width: 40,
+                    height: 40,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                title: const Text('title'),
+                subtitle: const Text('subtitle'),
               )
+
             ],
           ),
-        )
+        ),
+        Card(
+          margin: const EdgeInsets.all(20),
+          elevation: 40, // 阴影
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20)
+          ),
+          child: Column(
+            children: [
+              AspectRatio(
+                aspectRatio: 16/9,
+                child: Image.asset('images/img01.png', fit: BoxFit.fill,),
+              ),
+              const ListTile(
+                leading: CircleAvatar(
+                  radius: 20,
+                  backgroundImage: NetworkImage('images/img02.png',
+
+                  ),
+                ),
+                title: Text('title'),
+                subtitle: Text('subtitle'),
+              )
+
+            ],
+          ),
+        ),
       ],
     );
+
   }
 }
